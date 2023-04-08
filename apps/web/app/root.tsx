@@ -18,6 +18,7 @@ import {
 
 import uiStyles from '@org/ui/styles.css';
 import styles from './styles/global.css';
+import { V2_ErrorBoundaryComponent } from '@remix-run/react/dist/routeModules';
 
 export const meta: MetaFunction = () => ({
     charset: 'utf-8',
@@ -48,10 +49,6 @@ export const loader: LoaderFunction = async ({
     context: { payload, user },
     request,
 }): Promise<RootLoaderData | TypedResponse<never>> => {
-    const { pathname } = new URL(request.url);
-    if (pathname === '/') {
-        return redirect('/home');
-    }
 
     const { docs: pages } = await payload.find({
         collection: 'pages',
@@ -89,7 +86,7 @@ export default function App() {
     );
 }
 
-export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
+export const ErrorBoundary: V2_ErrorBoundaryComponent = () => {
     return (
         <html lang="en">
             <head>
@@ -97,7 +94,7 @@ export const ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
                 <Links />
             </head>
             <body>
-                <div>ERROR: {error.message}</div>
+                <div>ERROR:</div>
                 <Outlet />
                 <ScrollRestoration />
                 <Scripts />

@@ -8,79 +8,86 @@ import { authenticatedAndAdmin, pageIsPublic } from '../access/index';
 
 export const pagesSlug = 'pages';
 export const Pages: CollectionConfig = {
-    slug: pagesSlug,
-    admin: {
-        useAsTitle: 'title',
+  slug: pagesSlug,
+  admin: {
+    useAsTitle: 'title',
+    preview: (doc, { locale }) => {
+      if (doc?.slug) {
+        return `http://localhost:3000/preview/${doc.slug}`;
+      }
+
+      return '';
     },
-    access: {
-        read: ({ req }) => {
-            if (authenticatedAndAdmin({ req })) return true;
-            return pageIsPublic();
-        },
-        create: authenticatedAndAdmin,
-        update: authenticatedAndAdmin,
-        delete: authenticatedAndAdmin,
+  },
+  access: {
+    read: ({ req }) => {
+      if (authenticatedAndAdmin({ req })) return true;
+      return pageIsPublic();
     },
-    fields: [
+    create: authenticatedAndAdmin,
+    update: authenticatedAndAdmin,
+    delete: authenticatedAndAdmin,
+  },
+  fields: [
+    {
+      name: 'title',
+      label: 'Page Title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'image',
+      label: 'Featured Image',
+      type: 'upload',
+      relationTo: mediaSlug,
+    },
+    {
+      name: 'public',
+      label: 'Public',
+      type: 'checkbox',
+      defaultValue: false,
+    },
+    {
+      name: 'layout',
+      label: 'Page Layout',
+      type: 'blocks',
+      minRows: 1,
+      blocks: [CallToAction, Content, Image],
+    },
+    {
+      name: 'meta',
+      label: 'Page Meta',
+      type: 'group',
+      fields: [
         {
-            name: 'title',
-            label: 'Page Title',
-            type: 'text',
-            required: true,
+          name: 'title',
+          label: 'Title',
+          type: 'text',
         },
         {
-            name: 'image',
-            label: 'Featured Image',
-            type: 'upload',
-            relationTo: mediaSlug,
+          name: 'description',
+          label: 'Description',
+          type: 'textarea',
         },
         {
-            name: 'public',
-            label: 'Public',
-            type: 'checkbox',
-            defaultValue: false,
+          name: 'keywords',
+          label: 'Keywords',
+          type: 'text',
         },
-        {
-            name: 'layout',
-            label: 'Page Layout',
-            type: 'blocks',
-            minRows: 1,
-            blocks: [CallToAction, Content, Image],
-        },
-        {
-            name: 'meta',
-            label: 'Page Meta',
-            type: 'group',
-            fields: [
-                {
-                    name: 'title',
-                    label: 'Title',
-                    type: 'text',
-                },
-                {
-                    name: 'description',
-                    label: 'Description',
-                    type: 'textarea',
-                },
-                {
-                    name: 'keywords',
-                    label: 'Keywords',
-                    type: 'text',
-                },
-            ],
-        },
-        {
-            name: 'slug',
-            label: 'Page Slug',
-            type: 'text',
-            admin: {
-                position: 'sidebar',
-            },
-            hooks: {
-                beforeValidate: [formatSlug('title')],
-            },
-        },
-    ],
+      ],
+    },
+    {
+      name: 'slug',
+      label: 'Page Slug',
+      type: 'text',
+      admin: {
+        position: 'sidebar',
+      },
+      hooks: {
+        beforeValidate: [formatSlug('title')],
+      },
+    },
+  ],
 };
 
 export default Pages;

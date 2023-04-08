@@ -1,46 +1,46 @@
 import type { Block } from 'payload/types';
 
 export const Image: Block = {
-    slug: 'image',
-    labels: {
-        singular: 'Image',
-        plural: 'Images',
+  slug: 'image',
+  labels: {
+    singular: 'Image',
+    plural: 'Images',
+  },
+  fields: [
+    {
+      name: 'image',
+      label: 'Image',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
     },
-    fields: [
+    {
+      name: 'type',
+      label: 'Type',
+      type: 'radio',
+      defaultValue: 'normal',
+      options: [
         {
-            name: 'image',
-            label: 'Image',
-            type: 'upload',
-            relationTo: 'media',
-            required: true,
+          label: 'Card',
+          value: 'card',
         },
         {
-            name: 'type',
-            label: 'Type',
-            type: 'radio',
-            defaultValue: 'normal',
-            options: [
-                {
-                    label: 'Card',
-                    value: 'card',
-                },
-                {
-                    label: 'Feature',
-                    value: 'feature',
-                },
-            ],
-            required: true,
-            admin: {
-                layout: 'horizontal',
-            },
+          label: 'Feature',
+          value: 'feature',
         },
-        {
-            name: 'caption',
-            label: 'Caption',
-            type: 'richText',
-            admin: {
-                elements: ['link'],
-            },
-        },
-    ],
+      ],
+      required: true,
+      admin: {
+        layout: 'horizontal',
+      },
+    },
+    {
+      name: 'caption',
+      label: 'Caption',
+      type: 'richText',
+      admin: {
+        elements: ['link'],
+      },
+    },
+  ],
 };

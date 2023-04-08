@@ -7,22 +7,22 @@ import Media from './collections/Media';
 import Pages from './collections/Pages';
 
 const config = buildConfig({
-    admin: {
-        user: Users.slug,
-    },
-    collections: [Users, Media, Pages],
-    typescript: {
-        outputFile: path.resolve(__dirname, 'payload-types.ts'),
-    },
-    graphQL: {
-        schemaOutputFile: path.resolve(__dirname, 'payload-schema.graphql'),
-    },
-    onInit: async (payload: Payload) => {
-        if (process.env.NODE_ENV === 'development') {
-            await seedUsers(payload);
-            await seedPages(payload);
-        }
-    },
+  admin: {
+    user: Users.slug,
+  },
+  collections: [Users, Media, Pages],
+  typescript: {
+    outputFile: path.resolve(__dirname, 'payload-types.ts'),
+  },
+  graphQL: {
+    schemaOutputFile: path.resolve(__dirname, 'payload-schema.graphql'),
+  },
+  onInit: async (payload: Payload) => {
+    if (process.env.NODE_ENV === 'development') {
+      await seedUsers(payload);
+      await seedPages(payload);
+    }
+  },
 });
 
 export default config;
