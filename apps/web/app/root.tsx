@@ -1,8 +1,7 @@
-import type { Page, User } from '@org/cms';
+import type { User } from '@org/cms';
 import type {
   LinksFunction,
   LoaderFunction,
-  MetaFunction,
   TypedResponse,
 } from '@remix-run/node';
 import {
@@ -17,12 +16,6 @@ import {
 import uiStyles from '@org/ui/styles.css';
 import styles from './styles/global.css';
 
-export const meta: MetaFunction = () => ({
-  charset: 'utf-8',
-  title: 'Payload CMS & Remix Monorepo',
-  viewport: 'width=device-width,initial-scale=1',
-});
-
 export const links: LinksFunction = () => [
   {
     rel: 'stylesheet',
@@ -35,30 +28,26 @@ export const links: LinksFunction = () => [
 ];
 
 export type RootLoaderData = {
-  pages: Page[];
   user?: {
     user?: User;
     token?: string;
     exp?: number;
   };
 };
+
 export const loader: LoaderFunction = async ({
   context: { payload, user },
   request,
 }): Promise<RootLoaderData | TypedResponse<never>> => {
-  const { docs: pages } = await payload.find({
-    collection: 'pages',
-    user,
-    overrideAccess: false,
-  });
-
-  return { pages, user };
+  return { user };
 };
 
 export default function App() {
   return (
     <html lang="en">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -87,14 +76,23 @@ import { isRouteErrorResponse, useRouteError } from '@remix-run/react';
 export function ErrorBoundary() {
   const error = useRouteError();
 
-  // when true, this is what used to go to `CatchBoundary`
+  // use throw json({}) to render catch boundary
   if (isRouteErrorResponse(error)) {
     return (
-      <div>
-        <h1>Oops</h1>
-        <p>Status: {error.status}</p>
-        <p>{error.data.message}</p>
-      </div>
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
+          <Links />
+        </head>
+        <body>
+          <div className="bg-black text-white h-screen w-full flex justify-center items-center">
+            <p className="text-5xl font-thin">
+              {error.status} | {error.data.message}
+            </p>
+          </div>
+        </body>
+      </html>
     );
   }
 
