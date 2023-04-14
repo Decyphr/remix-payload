@@ -13,7 +13,6 @@ This monorepo is using `pnpm` for package management. While it is an easy task t
 - `/apps/cms`: a [Payload CMS](https://payloadcms.com/) application, which will act as our backend and admin interface
 - `/apps/web`: a [Remix](https://remix.run/) application, which will act as our frontend
 - `/apps/server`: a [ExpressJS](https://expressjs.com/) application that ties all our middleware, static file serving and routing needs together
-- `/packages/ui`: a stub React component library shared by both `web` and `cms` applications
 - `/packages/shared`: a package that all out apps use that contains shared dependencies, in order to reduce bundle sizes
 - `/packages/eslint-config-custom`: `eslint` configurations
 

@@ -34,8 +34,7 @@
         "lint": "eslint --ext .ts,.tsx,.js,.jsx ./src"
     },
     "dependencies": {
-        "@org/ui": "workspace:*",
-        "payload": "^1.6.9"
+        "payload": "^1.6.32"
     },
     "devDependencies": {
         "@org/shared": "workspace:*",

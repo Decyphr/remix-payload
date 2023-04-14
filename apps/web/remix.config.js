@@ -10,8 +10,8 @@ module.exports = {
     ignoredRouteFiles: ['**/.*'],
     assetsBuildDirectory: 'public/web/build',
     publicPath: '/web/build/',
-    serverDependenciesToBundle: ['@org/ui'],
+    // serverDependenciesToBundle: [],
     // appDirectory: "app",
     // serverBuildPath: "build/index.js",
-    watchPaths: ['../../packages/ui', '../../packages/shared'],
+    watchPaths: ['../../packages/shared'],
 };

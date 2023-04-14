@@ -13,14 +13,9 @@ import {
   ScrollRestoration,
 } from '@remix-run/react';
 
-import uiStyles from '@org/ui/styles.css';
 import styles from './styles/global.css';
 
 export const links: LinksFunction = () => [
-  {
-    rel: 'stylesheet',
-    href: uiStyles,
-  },
   {
     rel: 'stylesheet',
     href: styles,

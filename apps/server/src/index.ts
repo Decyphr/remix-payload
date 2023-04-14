@@ -100,7 +100,8 @@ payload
           })
     );
 
-    const port = process.env.PORT || 3000;
+    // dev port 3000, production port 8080 (fly.io default)
+    const port = ENVIRONMENT === 'production' ? 8080 : 3000;
 
     app.listen(port, () => {
       console.log(`Express server listening on port ${port}`);

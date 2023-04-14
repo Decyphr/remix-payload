@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "license": "MIT",
     "workspaces": [
-        "packages/*",
-        "apps/*"
+        "apps/*",
+        "packages/*"
     ],
     "scripts": {
         "clean": "turbo run clean && rm -rf node_modules",
