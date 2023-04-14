@@ -1,7 +1,7 @@
 import path from 'path';
 import type { Payload } from 'payload';
-import { pagesSlug } from '../collections/Pages';
 import { mediaSlug } from '../collections/Media';
+import { pagesSlug } from '../collections/Pages';
 import { usersSlug } from '../collections/Users';
 import home from './home-page.json';
 import posts from './posts-page';
@@ -42,7 +42,7 @@ export const seedUsers = async (payload: Payload) => {
   const { totalDocs } = await payload.find({
     collection: usersSlug,
   });
-  if (!totalDocs) {
+  /* if (!totalDocs) {
     // initial Admin User
     payload.create({
       collection: usersSlug,
@@ -64,5 +64,5 @@ export const seedUsers = async (payload: Payload) => {
       },
     });
     payload.logger.info(`Successfully seeded users into database`);
-  }
+  } */
 };
