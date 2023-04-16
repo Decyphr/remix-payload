@@ -1,10 +1,13 @@
+import seo from '@payloadcms/plugin-seo';
 import path from 'path';
-import { buildConfig } from 'payload/config';
-import Users from './collections/Users';
 import { Payload } from 'payload';
-import { seedPages, seedUsers } from './seed/index';
+import { buildConfig } from 'payload/config';
 import Media from './collections/Media';
 import Pages from './collections/Pages';
+import Users from './collections/Users';
+import { seedPages, seedUsers } from './seed/index';
+
+const siteTitle = 'Website.com';
 
 const config = buildConfig({
   admin: {
@@ -17,6 +20,7 @@ const config = buildConfig({
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'payload-schema.graphql'),
   },
+  plugins: [seo({})],
   onInit: async (payload: Payload) => {
     if (process.env.NODE_ENV === 'development') {
       await seedUsers(payload);

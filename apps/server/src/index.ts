@@ -17,17 +17,6 @@ if (config.error) {
   throw config.error;
 }
 
-/* const localEnvFilePath = path.resolve(process.cwd(), '.env.local');
-if (fs.existsSync(localEnvFilePath)) {
-  const localConfig = dotenv.config({
-    path: localEnvFilePath,
-    override: true,
-  });
-  if (localConfig.error) {
-    throw localConfig.error;
-  }
-} */
-
 const MONGODB_URL = process.env.MONGODB_URL ?? '';
 const PAYLOADCMS_SECRET = process.env.PAYLOADCMS_SECRET ?? '';
 const ENVIRONMENT = process.env.NODE_ENV;

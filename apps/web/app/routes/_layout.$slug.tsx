@@ -1,6 +1,7 @@
 import type { Page } from '@org/cms';
 import { LoaderFunction, V2_MetaFunction, json } from '@remix-run/node';
-import { Link, useLoaderData } from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
+import { RenderBlocks } from '~/components/Blocks';
 
 type LoaderData = {
   page: Page;
@@ -41,8 +42,11 @@ export default function PageSlug() {
 
   return (
     <div>
-      {page.title}
-      <Link to="/sample-page">Sample Page</Link>
+      {page?.layout ? (
+        <RenderBlocks layout={page.layout} />
+      ) : (
+        'This page seem to be empty'
+      )}
     </div>
   );
 }

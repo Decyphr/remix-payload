@@ -19,6 +19,9 @@ importers:
 
   apps/cms:
     dependencies:
+      '@payloadcms/plugin-seo':
+        specifier: ^1.0.10
+        version: 1.0.10(payload@1.6.32)(react@18.2.0)
       payload:
         specifier: ^1.6.32
         version: 1.6.32(monaco-editor@0.37.1)(scheduler@0.23.0)(typescript@4.9.5)
@@ -2410,6 +2413,16 @@ packages:
     dependencies:
       json-parse-even-better-errors: 2.3.1
     dev: true
+
+  /@payloadcms/plugin-seo@1.0.10(payload@1.6.32)(react@18.2.0):
+    resolution: {integrity: sha512-lEcRo/wOACdc2RcqbjLFpsNR/oxrkTW5DskY/mlxspI9DxglPJHyZAr12lxl5aOr8Mn5/bEImTfInRUCnVnpMA==}
+    peerDependencies:
+      payload: ^0.18.5 || ^1.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      payload: 1.6.32(monaco-editor@0.37.1)(scheduler@0.23.0)(typescript@4.9.5)
+      react: 18.2.0
+    dev: false
 
   /@pkgr/utils@2.3.1:
     resolution: {integrity: sha512-wfzX8kc1PMyUILA+1Z/EqoE4UCXGy0iRGMhPwdfae1+f0OXlLqCk+By+aMzgJBzR9AzS4CDizioG6Ss1gvAFJw==}
